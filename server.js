@@ -19,6 +19,30 @@ app.get("/", function (request, response) {
 
 //START OF YOUR CODE...
 
+app.get("/quotes", function (request, response){
+  response.send(quotes);
+})
+
+app.get("/quotes/random", function (request, response) {
+  const randomQuote = pickFromArray(quotes);
+  response.send(randomQuote);
+  
+})
+
+app.get("/quotes/search", function (request, response) {
+  const filter = request.query.term.toLowerCase();
+  if (!filter) {
+    response.status(500).send("Term param is missing")
+  }  
+  const quoteFiltered = quotes.filter(quote => {
+    const quoteString = quote.quote.toLowerCase();
+    const authorString = quote.author.toLowerCase();
+    console.log(quoteString);
+    return quoteString.includes(filter) || authorString.includes(filter);
+  })
+    response.send(quoteFiltered);
+})
+
 //...END OF YOUR CODE
 
 //You can use this function to pick one element at random from a given array

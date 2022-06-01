@@ -89,7 +89,7 @@ In this exercise the user will send data through the url.
 When the user changes the url like this:
 
 - `/quotes/search?term=life`
-- `/quotes/search?term=success`
+- `/quotes/search?term= `
 - `/quotes/search?term=miss`
 
 The server will respond with `life`, `success`, `miss`
